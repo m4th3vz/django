@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Tarefas{% endblock %}
+
+{% block content %}
+<h1>Tarefas</h1>
+<ul>
+  {% for todo in object_list %}
+    <li>
+      <a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a>
+    </li>
+  {% empty %}
+    <li>Nenhuma tarefa cadastrada.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

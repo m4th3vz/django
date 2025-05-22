@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar{% endblock %}
+
+{% block content %}
+<h1>Deletar tarefa: {{ object.title }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Confirmar</button>
+</form>
+{% endblock %}

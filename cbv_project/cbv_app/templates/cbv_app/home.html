@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<h1>{{ mensagem }}</h1>
+<ul>
+  <li><a href="{% url 'todo_list' %}">Lista de tarefas</a></li>
+  <li><a href="{% url 'todo_create' %}">Nova tarefa</a></li>
+  <li><a href="{% url 'contato' %}">Contato</a></li>
+  <li><a href="{% url 'redirecionar' %}">Redirecionar</a></li>
+</ul>
+{% endblock %}
