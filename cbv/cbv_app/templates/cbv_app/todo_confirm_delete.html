@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar{% endblock %}
+
+{% block content %}
+<h1>Deletar tarefa: {{ object.title }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-primary">Confirmar</button>
+</form>
+{% endblock %}
+
+<!--
+  Esta página é usada pela classe TodoDeleteView, que herda de DeleteView.
+  
+  FUNCIONAMENTO:
+  - A classe TodoDeleteView está ligada ao modelo Todo.
+  - Quando o usuário acessa esta página (GET), o Django carrega o objeto Todo a ser deletado usando o ID (pk) na URL.
+  - O template exibe as informações da tarefa e um formulário para confirmar a exclusão.
+  - Quando o formulário é enviado com o método POST:
+      → A DeleteView executa o método delete() automaticamente.
+      → O objeto é removido do banco de dados.
+      → O usuário é redirecionado para a URL definida em success_url (neste caso, "todo_list").
+  
+  DETALHES TÉCNICOS:
+  - {{ object }} representa o objeto Todo atual.
+  - {% csrf_token %} é necessário para proteger o formulário contra ataques CSRF.
+  - O botão "Confirmar" envia o formulário via POST.
+  - É possível adicionar um link de "Cancelar" com {% url 'todo_list' %} se desejar.
+
+  Essa é a estrutura padrão de uma confirmação de deleção usando Class-Based Views no Django.
+-->

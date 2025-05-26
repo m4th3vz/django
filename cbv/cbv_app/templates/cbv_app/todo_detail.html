@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes{% endblock %}
+
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>{{ object.description }}</p>
+<p>Entrega: {{ object.deadline }}</p>
+<a href="{% url 'todo_update' todo.pk %}" class="btn btn-primary">Editar</a>
+<a href="{% url 'todo_delete' todo.pk %}" class="btn btn-primary">Deletar</a>
+{% endblock %}
+
+<!--
+  Esta página é usada pela classe TodoDetailView, que herda de DetailView.
+
+  FUNCIONAMENTO:
+  - DetailView é usada para exibir os **detalhes de um único objeto** de um modelo.
+  - A view está ligada ao modelo Todo com: model = Todo.
+  - O Django busca automaticamente o objeto usando o parâmetro da URL (normalmente o `pk`).
+  - O objeto é passado para o template como `object` (ou com nome personalizado usando `context_object_name`).
+
+  DETALHES TÉCNICOS:
+  - {{ object.title }}, {{ object.description }} e {{ object.deadline }} exibem os dados do objeto atual.
+  - {% url 'todo_update' object.pk %} cria o link para a página de edição do objeto.
+  - {% url 'todo_delete' object.pk %} cria o link para a página de confirmação de deleção.
+  - DetailView é ideal para criar páginas de visualização individual de itens, como "detalhes da tarefa", "perfil do usuário", etc.
+-->

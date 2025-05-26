@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Formulário de Tarefa{% endblock %}
+
+{% block content %}
+  <h1>Formulário de Tarefa</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Aqui os campos são renderizados -->
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+{% endblock %}
+
+
+<!--
+  Esta página é usada pela classe TodoCreateView, que herda de CreateView.
+
+  FUNCIONAMENTO:
+  - CreateView é usada para **criar novos objetos** de um modelo (neste caso, o modelo Todo).
+  - A view define:
+      → model = Todo → indica qual modelo será criado.
+      → fields = [...] → especifica os campos do formulário automaticamente gerado.
+      → success_url → para onde o usuário será redirecionado após o envio bem-sucedido.
+      → template_name → qual template será renderizado para exibir o formulário.
+
+  - Quando o usuário acessa a página (GET), o Django renderiza o formulário com os campos especificados.
+  - Ao enviar o formulário (POST), os dados são validados e, se válidos:
+      → Um novo objeto Todo é salvo no banco de dados.
+      → O usuário é redirecionado para "todo_list".
+
+  DETALHES TÉCNICOS:
+  - {% csrf_token %} protege contra ataques CSRF.
+  - {{ form.as_p }} renderiza os campos do formulário como parágrafos.
+  - O botão "Salvar" envia o formulário para a própria URL.
+  - CreateView automatiza toda a lógica de criação, evitando que o desenvolvedor precise escrever manualmente `form.save()`.
+-->

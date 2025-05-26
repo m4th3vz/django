@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Contato{% endblock %}
+
+{% block content %}
+<h1>Contato</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+{% endblock %}
+
+<!--
+  Esta página é usada pela classe ContatoView, que herda de FormView.
+  
+  FUNCIONAMENTO:
+  - A ContatoView serve para processar formulários que **não estão ligados a um modelo (sem ModelForm)**.
+  - O formulário usado é definido por `form_class = ContactForm`.
+  - Quando o usuário acessa esta página (GET), o Django renderiza o template com uma instância vazia de ContactForm.
+  - O template exibe o formulário usando {{ form.as_p }} e um botão para envio.
+  - Quando o formulário é enviado com método POST:
+      → O Django valida o formulário.
+      → Se estiver válido, o método form_valid() é chamado.
+      → Os dados limpos ficam disponíveis em form.cleaned_data.
+      → Neste exemplo, os dados são apenas impressos no terminal (print()).
+      → O usuário é redirecionado para a success_url (a view "home").
+  
+  DETALHES TÉCNICOS:
+  - {% csrf_token %} é essencial para segurança contra CSRF.
+  - {{ form.as_p }} renderiza os campos do formulário como parágrafos.
+  - FormView é útil quando se quer processar dados de formulário **sem salvar no banco de dados**.
+-->

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<h1>{{ mensagem }}</h1>
+<ul>
+  <li><a href="{% url 'todo_list' %}">Lista de tarefas</a></li>
+  <li><a href="{% url 'todo_create' %}">Nova tarefa</a></li>
+  <li><a href="{% url 'contato' %}">Contato</a></li>
+  <li><a href="{% url 'redirecionar' %}">Redirecionar</a></li>
+</ul>
+{% endblock %}
+
+<!--
+  Esta página é usada pela classe HomePageView, que herda de TemplateView.
+
+  FUNCIONAMENTO:
+  - TemplateView é usada quando queremos apenas renderizar um template, com ou sem contexto adicional.
+  - A view define o template a ser usado com: template_name = "cbv_app/home.html".
+  - O método get_context_data() é sobrescrito para adicionar variáveis ao contexto.
+      → Neste caso, adiciona a variável "mensagem" com o texto "Bem-vindo à página inicial!".
+  - O template pode acessar essa variável usando {{ mensagem }}.
+
+  DETALHES TÉCNICOS:
+  - {{ mensagem }} exibe o conteúdo passado no contexto pela view.
+  - Os links usam a tag {'% url %'} para navegar entre as páginas registradas nas urls.py.
+  - Esta página é uma boa opção para páginas estáticas ou semi-dinâmicas, como página inicial, sobre, etc.
+-->

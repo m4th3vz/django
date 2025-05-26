@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes{% endblock %}
+
+{% block content %}
+<h1>{{ todo.title }}</h1>
+<p>{{ todo.description }}</p>
+<p>Entrega: {{ todo.deadline }}</p>
+<a href="{% url 'todo_update' todo.pk %}" class="btn btn-primary">Editar</a>
+<a href="{% url 'todo_delete' todo.pk %}" class="btn btn-primary">Deletar</a>
+{% endblock %}

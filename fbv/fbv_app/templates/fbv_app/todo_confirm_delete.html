@@ -6,6 +6,6 @@
 <h1>Deletar tarefa: {{ object.title }}</h1>
 <form method="post">
   {% csrf_token %}
-  <button type="submit">Confirmar</button>
+  <button type="submit" class="btn btn-primary">Confirmar</button>
 </form>
 {% endblock %}

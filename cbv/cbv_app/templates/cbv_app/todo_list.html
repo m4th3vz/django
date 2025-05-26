@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Tarefas{% endblock %}
+
+{% block content %}
+<h1>Tarefas</h1>
+<ul>
+  {% for todo in object_list %}
+    <li>
+      <a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a>
+    </li>
+  {% empty %}
+    <li>Nenhuma tarefa cadastrada.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+<!--
+  Esta página é usada pela classe TodoListView, que herda de ListView.
+
+  FUNCIONAMENTO:
+  - ListView é usada para **listar todos os objetos** de um determinado modelo.
+  - A view define:
+      → model = Todo → os objetos do modelo Todo serão listados.
+      → template_name → nome do template que será renderizado.
+
+  - Quando o usuário acessa a página (GET):
+      → O Django busca todos os objetos do modelo Todo.
+      → Os objetos são passados para o template na variável `object_list`.
+      → Cada item pode ser acessado no loop como `todo` (ou qualquer outro nome que escolher).
+
+  DETALHES TÉCNICOS:
+  - {'% for todo in object_list %'} percorre a lista de tarefas.
+  - {'% empty %'} exibe uma mensagem caso não haja objetos cadastrados.
+  - {'% url 'todo_detail' todo.pk %'} cria um link para os detalhes de cada tarefa.
+  - ListView simplifica a exibição de listas, sem necessidade de escrever manualmente consultas ou lógica adicional.
+-->
