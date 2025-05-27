@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Tarefas{% endblock %}
+
+{% block content %}
+<h1>Tarefas</h1>
+<ul>
+  {% for tarefa in object_list %}
+    <li>
+      <strong>{{ tarefa.titulo }}</strong><br>
+      Descrição: {{ tarefa.descricao|default:"(Sem descrição)" }}<br>
+      Prazo: {{ tarefa.prazo }}<br>
+
+      <a href="{% url 'tarefa_atualizar' tarefa.pk %}">Editar</a> |
+      <a href="{% url 'tarefa_apagar' tarefa.pk %}">Excluir</a>
+    </li>
+  {% empty %}
+    <li>Nenhuma tarefa cadastrada.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'tarefa_criar' %}" class="btn btn-primary">Nova tarefa</a>
+{% endblock %}

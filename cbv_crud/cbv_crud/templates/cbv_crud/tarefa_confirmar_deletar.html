@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar{% endblock %}
+
+{% block content %}
+<h1>Deletar tarefa: {{ object.titulo }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Confirmar</button>
+  <a href="{% url 'tarefa_listar' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
