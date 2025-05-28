@@ -4,10 +4,10 @@
 
 {% block content %}
 <h1>Confirmar exclusão</h1>
-<p>Você tem certeza que deseja apagar "{{ object.titulo }}"?</p>
+<p>Você tem certeza que deseja apagar "{{ tarefa.titulo }}"?</p>
 <form method="post">
-  {% csrf_token %}
-  <button type="submit" class="btn btn-danger">Confirmar</button>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
   <a href="{% url 'tarefa_listar' %}" class="btn btn-secondary">Cancelar</a>
 </form>
 {% endblock %}
