@@ -6,7 +6,7 @@
 <h1>Tarefas</h1>
 
 <ul>
-  {% for tarefa in object_list %}
+  {% for tarefa in lista_tarefas %}
     <li>
       <strong>{{ tarefa.titulo }}</strong><br>
       Descrição: {{ tarefa.descricao|default:"(Sem descrição)" }}<br>
